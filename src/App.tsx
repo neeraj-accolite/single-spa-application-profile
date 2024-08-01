@@ -1,13 +1,13 @@
 import './style.css';
 import { useState } from 'react';
-import { CustomProps, getAppNames, getAppStatus, navigateToUrl, ParcelConfig, ParcelProps } from 'single-spa';
+import {  navigateToUrl, ParcelConfig } from 'single-spa';
 import Parcel from 'single-spa-react/parcel'
 import {getAllUsers, Profile} from '@acc/api';
 
-export default function Root(props:any) {
+export default function Root() {
 
   const [isLoading, setLoading] = useState<Boolean>(false);
-  const [data, setData] = useState<Profile[]>(null);
+  const [data, setData] = useState<Profile[] | null>(null);
 
   const onFetchDetails = async ()=>{
     setLoading(true);
@@ -19,7 +19,7 @@ export default function Root(props:any) {
     },500);  
   }
 
-  const onNavigate = (path)=>{
+  const onNavigate = (path:string)=>{
     navigateToUrl(path);
   }
 
